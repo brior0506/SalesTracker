@@ -6,3 +6,5 @@ class Product:
         self.stock_q = stock_q
     def update_stock(self, quantity):
         self.stock_q -= quantity
+    def get_price(self):
+        return self.price
