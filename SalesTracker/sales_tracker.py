@@ -3,6 +3,10 @@ import uuid
 from Sale.sale import Sale
 
 
+def generate_sale_id():
+    return str(uuid.uuid4())
+
+
 class SalesTracker:
     def __init__(self):
         self.products = []
@@ -15,10 +19,12 @@ class SalesTracker:
             index += 1
         self.products.insert(index, product)
 
-    def regiseter_customer(self, customer):
+    def register_customer(self, customer):
         index = 0
         while index < len(self.customers) and self.customers[index].get_id() < customer.get_id():
             index += 1
+        if self.customers[index].get_id() == customer.get_id():
+            return
         self.customers.insert(index, customer)
 
     def bin_search(self, arr, targ):
@@ -49,13 +55,9 @@ class SalesTracker:
             if product.get_stock() < q:
                 raise ValueError('Insufficient stock available')
             product.update_stock(q)
-        unique_id = self.generate_sale_id()
+        unique_id = generate_sale_id()
         sale = Sale(unique_id, customer, product, q)
         self.sales.append(sale)
-
-    def generate_sale_id(self):
-        return str(uuid.uuid4())
-
 
     def generate_report(self):
         revenue = 0
