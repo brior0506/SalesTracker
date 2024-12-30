@@ -43,12 +43,12 @@ class SalesTracker:
     def record_sale(self, c_id, p_id, q):
         customer = None
         product = None
-        if (c := self.bin_search(self.customers, self.customers[c_id])) < 0:
+        if (c := self.bin_search(self.customers, c_id)) < 0:
             raise Exception('Customer with corresponding ID is not registered')
         else:
             customer = self.customers[c]
 
-        if (p := self.bin_search(self.products, self.products[p_id])) < 0:
+        if (p := self.bin_search(self.products, p_id)) < 0:
             raise Exception('Product with corresponding ID is not registered')
         else:
             product = self.products[p]
