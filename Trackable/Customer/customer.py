@@ -1,10 +1,11 @@
 from collections import defaultdict
 
+from Trackable.trackable import Trackable
 
-class Customer:
+
+class Customer(Trackable):
     def __init__(self, customer_id, name, email, phone):
-        self.customer_id = customer_id
-        self.name = name
+        super().__init__(customer_id, name)
         self.email = email
         self.phone = phone
 
@@ -15,3 +16,10 @@ class Customer:
         contact['email'] = self.email
         contact['phone'] = self.phone
         return contact
+
+
+    def get_email(self):
+        return self.email
+    def get_phone(self):
+        return self.phone
+
